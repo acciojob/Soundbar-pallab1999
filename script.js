@@ -1,14 +1,8 @@
-//your JS code here. If required.
 document.addEventListener("DOMContentLoaded", () => {
-    const soundNames = ["applause", "boo", "gasp", "tada", "victory", "wrong"];
-
-    const buttonsContainer = document.createElement("div");
-    buttonsContainer.id = "buttons";
-    document.body.appendChild(buttonsContainer);
-
+    const soundButtons = document.querySelectorAll(".btn");
+    const stopButton = document.querySelector(".stop");
     let currentAudio = null;
 
-    // Function to stop currently playing audio
     function stopAudio() {
         if (currentAudio) {
             currentAudio.pause();
@@ -16,27 +10,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Create buttons for sounds
-    soundNames.forEach(sound => {
-        const button = document.createElement("button");
-        button.classList.add("btn");
-        button.innerText = sound;
-
+    soundButtons.forEach(button => {
         button.addEventListener("click", () => {
             stopAudio();
-            currentAudio = new Audio(`sounds/${sound}.mp3`);
+            const soundName = button.innerText.toLowerCase();
+            currentAudio = new Audio(`sounds/${soundName}.mp3`);
             currentAudio.play();
         });
-
-        buttonsContainer.appendChild(button);
     });
 
-    // Create stop button
-    const stopButton = document.createElement("button");
-    stopButton.classList.add("btn", "stop");
-    stopButton.innerText = "Stop";
-
     stopButton.addEventListener("click", stopAudio);
-
-    buttonsContainer.appendChild(stopButton);
 });
+
