@@ -11,7 +11,7 @@ function playSound(btn){
 
 function stopSounds(params){
 	for(let i=0;i<btns.length;i++){
-		const sound = document.getElementById(btns[i].innertext.trim());
+		const sound = document.getElementById(btns[i].innerText.trim());
 		console.log({sound})
 		sound.pause();
 		sound.currentTime=0;
