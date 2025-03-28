@@ -1,17 +1,17 @@
 
-const btns = Array.form(document.querySelectorAll(".btn"));
+const btns = Array.from(document.querySelectorAll(".btn"));
 console.log(btns);
 
 function playSound(btn){
-	btn.addEventListener("cllick",()=>{
+	btn.addEventListener("click",()=>{
 		stopSounds();
-		document.getElementById(btn.innerText).play();
+		document.getElementById(btn.innerText.trim()).play();
 	})
 }
 
 function stopSounds(params){
 	for(let i=0;i<btns.length;i++){
-		const sound = document.getElementById(btns[i].innertext);
+		const sound = document.getElementById(btns[i].innertext.trim());
 		console.log({sound})
 		sound.pause();
 		sound.currentTime=0;
@@ -19,7 +19,7 @@ function stopSounds(params){
 }
 
 for(let i=0;i<btns.length;i++){
-	playSounds(btns[i]);
+	playSound(btns[i]);
 	document.querySelector(".stop").addEventListener('click',()=>{
 		stopSounds()
 	})
