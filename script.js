@@ -1,24 +1,27 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const soundButtons = document.querySelectorAll(".btn");
-    const stopButton = document.querySelector(".stop");
-    let currentAudio = null;
 
-    function stopAudio() {
-        if (currentAudio) {
-            currentAudio.pause();
-            currentAudio.currentTime = 0;
-        }
-    }
+const btns = Array.form(document.querySelectorAll(".btn"));
+console.log(btns);
 
-    soundButtons.forEach(button => {
-        button.addEventListener("click", () => {
-            stopAudio();
-            const soundName = button.innerText.toLowerCase();
-            currentAudio = new Audio(`sounds/${soundName}.mp3`);
-            currentAudio.play();
-        });
-    });
+function playSound(btn){
+	btn.addEventListener("cllick",()=>{
+		stopSounds();
+		document.getElementById(btn.innerText).play();
+	})
+}
 
-    stopButton.addEventListener("click", stopAudio);
-});
+function stopSounds(params){
+	for(let i=0;i<btns.length;i++){
+		const sound = document.getElementById(btns[i].innertext);
+		console.log({sound})
+		sound.pause();
+		sound.currentTime=0;
+	}
+}
+
+for(let i=0;i<btns.length;i++){
+	playSounds(btns[i]);
+	document.querySelector(".stop").addEventListener('click',()=>{
+		stopSounds()
+	})
+}
 
